@@ -1,7 +1,7 @@
 1. JOIN
 👉 JOIN se utiliza para combinar filas de dos o más tablas basadas en una condición de coincidencia.
 
-La coincidencia se basa generalmente en una clave primaria y una clave foránea.
+La coicidencia se basa generalmente en una clave primaria y una clave foránea.
 Existen varios tipos de JOIN:
 INNER JOIN → Devuelve solo las filas que tienen coincidencias en ambas tablas.
 LEFT JOIN → Devuelve todas las filas de la tabla de la izquierda y las coincidencias de la tabla de la derecha.

@@ -7,7 +7,7 @@ SHOW DATABASES;
 -- 2. Usar una Base de Datos (Ventas)
 USE Ventas;
 
--- 3. Listar las tablas de la Base de Datos Ventas
+-- 3. Listar las tablas de   la Base de Datos Ventas
 SHOW TABLES;
 
 -- 4. Vaciar (TRUNCATE) todas las tablas de la Base de Datos
