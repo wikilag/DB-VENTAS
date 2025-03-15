@@ -1,0 +1,112 @@
+1. JOIN
+👉 JOIN se utiliza para combinar filas de dos o más tablas basadas en una condición de coincidencia.
+
+La coincidencia se basa generalmente en una clave primaria y una clave foránea.
+Existen varios tipos de JOIN:
+INNER JOIN → Devuelve solo las filas que tienen coincidencias en ambas tablas.
+LEFT JOIN → Devuelve todas las filas de la tabla de la izquierda y las coincidencias de la tabla de la derecha.
+RIGHT JOIN → Devuelve todas las filas de la tabla de la derecha y las coincidencias de la tabla de la izquierda.
+FULL JOIN → Devuelve todas las filas cuando hay una coincidencia en una de las tablas (no soportado en MySQL).
+Ejemplo de JOIN:
+
+SELECT c.Nombre, v.ValorTotal
+FROM Cliente c
+JOIN Venta v ON c.IdCliente = v.IdCliente;
+✅ Devuelve el nombre del cliente y el valor total de las ventas solo si hay coincidencia en ambas tablas.
+
+2. GROUP BY
+👉 GROUP BY se usa para agrupar filas que tienen los mismos valores en columnas específicas.
+👉 Se utiliza junto con funciones de agregación como SUM(), COUNT(), AVG(), MIN(), MAX().
+
+Ejemplo de GROUP BY:
+SELECT c.Nombre, COUNT(v.IdVenta) AS TotalVentas
+FROM Cliente c
+JOIN Venta v ON c.IdCliente = v.IdCliente
+GROUP BY c.Nombre;
+✅ Agrupa las ventas por nombre de cliente y cuenta cuántas ventas ha realizado cada cliente.
+
+3. ON
+👉 ON se usa para especificar la condición que une dos tablas en una consulta con JOIN.
+👉 Especifica cómo deben relacionarse las filas entre las tablas.
+
+Ejemplo de ON:
+SELECT c.Nombre, v.ValorTotal
+FROM Cliente c
+JOIN Venta v ON c.IdCliente = v.IdCliente;
+✅ ON indica que la relación se establece entre IdCliente en la tabla Cliente y IdCliente en la tabla Venta.
+
+4. HAVING
+👉 HAVING se usa para filtrar los resultados después de una operación de agrupación (GROUP BY).
+👉 La diferencia entre WHERE y HAVING es que:
+
+WHERE filtra filas antes de la agrupación.
+HAVING filtra resultados después de la agrupación.
+
+Ejemplo de HAVING:
+SELECT c.Nombre, COUNT(v.IdVenta) AS TotalVentas
+FROM Cliente c
+JOIN Venta v ON c.IdCliente = v.IdCliente
+GROUP BY c.Nombre
+HAVING COUNT(v.IdVenta) > 1;
+✅ Filtra solo los clientes que tienen más de una venta después de la agrupación.
+
+5. LEFT JOIN
+👉 LEFT JOIN devuelve todas las filas de la tabla de la izquierda y las coincidencias de la tabla de la derecha.
+👉 Si no hay coincidencia, devuelve NULL en las columnas de la tabla de la derecha.
+
+Ejemplo de LEFT JOIN:
+SELECT c.Nombre, v.ValorTotal
+FROM Cliente c
+LEFT JOIN Venta v ON c.IdCliente = v.IdCliente;
+✅ Muestra todos los clientes, incluso si no han realizado ninguna venta.
+✅ Si no hay coincidencia, el valor de ValorTotal será NULL.
+
+6. ORDER BY
+👉 ORDER BY se usa para ordenar los resultados de una consulta.
+👉 Puedes ordenar los resultados de manera ascendente (ASC) o descendente (DESC).
+👉 Si no se especifica el orden, se asume ASC (ascendente) por defecto.
+
+Ejemplo de ORDER BY:
+SELECT c.Nombre, v.ValorTotal
+FROM Cliente c
+JOIN Venta v ON c.IdCliente = v.IdCliente
+ORDER BY v.ValorTotal DESC;
+✅ Ordena los resultados por el valor total de las ventas de mayor a menor.
+
+7. LIMIT
+👉 LIMIT limita el número de filas que devuelve una consulta.
+👉 Es útil para mostrar solo las primeras N filas o para realizar paginación.
+
+Ejemplo de LIMIT:
+SELECT c.Nombre, v.ValorTotal
+FROM Cliente c
+JOIN Venta v ON c.IdCliente = v.IdCliente
+ORDER BY v.ValorTotal DESC
+LIMIT 1;
+✅ Muestra solo el cliente con la venta de mayor valor.
+✅ LIMIT 1 devuelve solo una fila.
+
+8. DESC
+👉 DESC se usa para ordenar resultados en orden descendente.
+👉 Va acompañado de ORDER BY.
+
+Ejemplo de DESC:
+SELECT c.Nombre, v.ValorTotal
+FROM Cliente c
+JOIN Venta v ON c.IdCliente = v.IdCliente
+ORDER BY v.ValorTotal DESC;
+✅ Ordena los resultados desde el valor más alto al más bajo.
+
+9. Subconsultas (Nested Queries)
+👉 Una subconsulta es una consulta dentro de otra consulta.
+👉 Las subconsultas pueden devolver valores que se usan en la consulta externa.
+👉 Se utilizan con operadores como IN, NOT IN, EXISTS, NOT EXISTS, =, etc.
+
+Ejemplo de Subconsulta:
+SELECT c.Nombre, c.Apellido, v.FechaVenta
+FROM Cliente c
+JOIN Venta v ON c.IdCliente = v.IdCliente
+WHERE v.FechaVenta = (SELECT MAX(FechaVenta) FROM Venta);
+✅ La subconsulta (SELECT MAX(FechaVenta) FROM Venta) devuelve la fecha de la última venta.
+✅ La consulta externa filtra el cliente que realizó la última venta.
+
