@@ -82,3 +82,6 @@ CREATE INDEX idx_Cod_Pelicula ON Cassette (Cod_Pelicula);
 CREATE INDEX idx_Cod_Formato ON Cassette (Cod_Formato);
 CREATE INDEX idx_Cod_Tipo ON Peliculas (Cod_Tipo);
 CREATE INDEX idx_Cod_Cliente ON Alquiler (Cod_Cliente);
+
+
+--Esta es una prueba de merge
