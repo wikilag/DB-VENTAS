@@ -88,3 +88,5 @@ INSERT INTO Alquiler (id_pelicula, id_cliente, fecha_alquiler, fecha_devolucion)
 (1, 1, '2023-10-01', '2023-10-05'),
 (2, 2, '2023-10-02', '2023-10-06'),
 (3, 3, '2023-10-03', '2023-10-07');
+
+--Prueba de datos
